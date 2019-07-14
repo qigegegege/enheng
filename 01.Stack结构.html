@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function Stack(){
+        this.item=[]
+    }
+    // Stack.prototype.push=function(){
+        
+    // }
+    Stack.prototype={
+        constructor:Stack,
+        push:function(element){
+            if(arguments.length>1){
+                for(var i of arguments){
+                    this.item.push(i)
+                }
+            }else{
+                this.item.push(element)
+            }
+        },
+        pop(){
+            return this.item.pop()
+        },
+        // 查看栈顶
+        peek(){
+            return this.item[this.item.length-1]
+        },
+        // 查看是否为空
+        isEmpty(){
+            return this.item.length==0
+        },
+        size(){
+            return this.item.length
+        },
+        toString(){
+            // return this.item.toString().split(',').join(" ")
+            var result=''
+            for(var i of this.item){
+                result+=i+' '
+            }
+            return result
+        }
+    }
+    // var s=new Stack()
+    // s.push(1,2,3,7,4,9)
+    // console.log(s.item)
+    // console.log(s.peek())
+
+
+    // 十进制转二进制
+    function decTobin(decNum){
+        // 定义栈对象
+        var s=new Stack()
+        
+        // 循环操作
+        while(decNum>0){
+            console.log(decNum%2,decNum)
+            // 获取余数 放入栈中
+            s.item.push(decNum%2)
+            // 100/2  余数0
+            // 50/2       0
+            // 25/2       1
+            // 12/2
+            // 不断改变 ，获取整出后的数，作为下一次运行的数字
+            decNum=Math.floor(decNum/2)
+        }
+        console.log(s.toString())
+
+        var binStr=''
+        while(!s.isEmpty()){
+            binStr+=s.pop()//拿到
+        }
+
+        console.log(binStr)
+    }
+    decTobin(10)
+    </script>
+</body>
+</html>
